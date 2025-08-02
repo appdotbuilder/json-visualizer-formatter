@@ -2,10 +2,6 @@
 import { type JsonValidationResult } from '../schema';
 
 export async function validateJson(jsonContent: string): Promise<JsonValidationResult> {
-    // This is a placeholder declaration! Real code should be implemented here.
-    // The goal of this handler is to validate JSON content and provide detailed error information
-    // including line and column numbers for syntax errors.
-    
     try {
         JSON.parse(jsonContent);
         return {

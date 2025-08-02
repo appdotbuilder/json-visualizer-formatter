@@ -1,10 +1,19 @@
 
+import { db } from '../db';
+import { jsonHistoryTable } from '../db/schema';
 import { type JsonHistory } from '../db/schema';
+import { desc } from 'drizzle-orm';
 
 export async function getJsonHistory(): Promise<JsonHistory[]> {
-    // This is a placeholder declaration! Real code should be implemented here.
-    // The goal of this handler is to fetch the JSON processing history from the database.
-    // This is an optional feature for users to see their recent JSON operations.
-    
-    return [];
+  try {
+    const results = await db.select()
+      .from(jsonHistoryTable)
+      .orderBy(desc(jsonHistoryTable.created_at))
+      .execute();
+
+    return results;
+  } catch (error) {
+    console.error('Failed to fetch JSON history:', error);
+    throw error;
+  }
 }
